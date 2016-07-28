@@ -27,7 +27,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Attack Method&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="MakeTrojan_Button">
     <property name="geometry">
      <rect>
       <x>315</x>
@@ -47,7 +47,7 @@ font: 75 9pt &quot;ADMUI3Lg&quot;;</string>
      <string>Make Trojan</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="ExecuteTrojan_Button">
     <property name="geometry">
      <rect>
       <x>315</x>
@@ -73,11 +73,11 @@ font: 75 9pt &quot;ADMUI3Lg&quot;;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Target Number&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
+   <widget class="QPlainTextEdit" name="TargetNum_Button">
     <property name="geometry">
      <rect>
-      <x>175</x>
-      <y>29</y>
+      <x>180</x>
+      <y>30</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -96,7 +96,7 @@ font: 75 9pt &quot;ADMUI3Lg&quot;;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Attack URL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="AttackURL_EDIT">
     <property name="geometry">
      <rect>
       <x>25</x>
@@ -106,7 +106,7 @@ font: 75 9pt &quot;ADMUI3Lg&quot;;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="Keylogger_CheckBox">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -119,7 +119,7 @@ font: 75 9pt &quot;ADMUI3Lg&quot;;</string>
      <string>Keylogger</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="ScreenShot_CheckBox">
     <property name="geometry">
      <rect>
       <x>30</x>
