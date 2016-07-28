@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f90388f2-3e75-42fd-9e22-d8b429c8e3f5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/trojan.ui" afterPath="$PROJECT_DIR$/modules/trojan.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CNC.iws" />
@@ -417,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469708960692</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="upload">
+      <created>1469716851688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1469716851689</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -470,7 +476,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modify location of cacert.pem" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
