@@ -2,6 +2,8 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from PyQt4 import uic
+import json
+import base64
 
 form_class = uic.loadUiType("trojan.ui")[0]
 
@@ -21,12 +23,13 @@ class TrojanWindow(QMainWindow, form_class):
         ScreenShot_Check = self.ScreenShot_CheckBox.checkState()
         TargetNum_Button = self.TargetNum_Button.toPlainText()
         if Keylogger_Check is self.clicked:
-            MakeConfig(keylogger)
+            MakeConfig(self, keylogger)
         if ScreenShot_Check is self.noneclicked:
-            MakeConfig(ScreenShot)
+            MakeConfig(self, ScreenShot)
         self.MakeRandomDirectory(TargetNum_Button)
 
-
+    def MakeConfig(self, name):
+        json.JSONEncoder.
     def ExecuteTrojan_Clicked(self):
         print 1
     def MakeRandomDirectory(self):
