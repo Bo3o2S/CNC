@@ -20,7 +20,7 @@ task_queue      = Queue.Queue()
 USER            = "Bo3o2S"
 PASS            = "rltgjqm3346!!"
 
-os.environ['REQUESTS_CA_BUNDLE'] = "cacert.pem"
+#os.environ['REQUESTS_CA_BUNDLE'] = "cacert.pem"
 
 
 def connect_to_github():
