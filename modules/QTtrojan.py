@@ -25,7 +25,7 @@ class TrojanWindow(QMainWindow, form_class):
         self.ScreenShot_Check = None
         self.targetNum_Button = None
         self.config = {"module": ""}
-        self.configAll = [{"module": "None"} for _ in range(10)]
+        self.configAll = [{"module": "Empty"} for _ in range(10)]
         self.jsonDumped = None
 
     def MakeTrojan_Clicked(self):
